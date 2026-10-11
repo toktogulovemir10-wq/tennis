@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Хочешь такой же сайт?{% endblock %}
+{% block body %}
+<main class="wrap" style="padding-top:40px;padding-bottom:48px">
+  <p><a href="{% url 'index' %}">← На главную</a></p>
+  {% include "_about_body.html" %}
+</main>
+{% endblock %}

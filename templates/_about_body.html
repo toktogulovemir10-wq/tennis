@@ -1,0 +1,8 @@
+<h1 class="about-title">Хочешь такой же сайт?</h1>
+<p class="about-lead">Этот сайт сделал {{ AUTHOR.name }}. Если нужен похожий для кружка, секции, школы или мероприятия, напиши, и я сделаю.</p>
+<div class="about-actions">
+  {% if AUTHOR.tg %}<a class="cta" href="https://t.me/{{ AUTHOR.tg }}" target="_blank" rel="noopener">Написать в Telegram</a>{% endif %}
+  {% if AUTHOR.bot %}<a class="cta alt" href="https://t.me/{{ AUTHOR.bot }}" target="_blank" rel="noopener">Оставить заявку в боте</a>{% endif %}
+  {% if AUTHOR.site %}<a class="cta alt" href="{{ AUTHOR.site }}" target="_blank" rel="noopener">Посмотреть мои работы</a>{% endif %}
+  {% if not AUTHOR.tg and not AUTHOR.bot and not AUTHOR.site %}<p class="about-lead">Контакты ещё не указаны.</p>{% endif %}
+</div>

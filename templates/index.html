@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block body %}
+<header class="hero">
+  <div class="wrap">
+    <h1>Набор детей на теннис</h1>
+    <p>Занятия для школьников: подготовка с нуля, тренировки в группах. Оставьте заявку, и мы свяжемся с вами по телефону.</p>
+    <a class="btn" href="{% url 'register' %}">Записаться</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>Объявления</h2>
+    {% for a in announcements %}
+      <article class="notice">
+        <h3>{{ a.title }}</h3>
+        <p>{{ a.text }}</p>
+        <small>{{ a.created_at|date:"j E Y" }}</small>
+      </article>
+    {% empty %}
+      <p class="empty">Пока нет объявлений. Загляните позже.</p>
+    {% endfor %}
+  </section>
+
+  <section id="list">
+    <h2>Кто уже записался <span class="count">{{ registrations|length }}</span></h2>
+    {% if registrations %}
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>№</th><th>Фамилия</th><th>Имя</th><th>Класс</th></tr></thead>
+        <tbody>
+        {% for r in registrations %}
+          <tr><td class="n">{{ forloop.counter }}</td><td>{{ r.last_name }}</td><td>{{ r.first_name }}</td><td>{{ r.school_class }}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+      <p class="empty">Пока никто не записался. Станьте первым.</p>
+    {% endif %}
+  </section>
+
+  <footer>{% include "_credit.html" %}</footer>
+</main>
+<div class="sticky"><a class="btn" href="{% url 'register' %}">Записаться на теннис</a></div>
+{% endblock %}

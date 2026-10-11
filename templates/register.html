@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Запись на теннис{% endblock %}
+{% block body %}
+<main class="wrap" style="padding-top:40px;padding-bottom:48px">
+  <p><a href="{% url 'index' %}">← На главную</a></p>
+  <h2>Запись на теннис</h2>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% for f in form %}
+      <div class="field">
+        <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+        {{ f }}
+        {{ f.errors }}
+      </div>
+    {% endfor %}
+    <button class="btn" style="width:100%" type="submit">Записаться</button>
+  </form>
+  <p style="color:var(--muted);max-width:520px">Номер телефона виден только организаторам. В общем списке показываются фамилия, имя и класс.</p>
+  {% include "_credit.html" %}
+</main>
+{% endblock %}

@@ -1,0 +1,1 @@
+<p class="credit">Сайт сделал <a href="{% if AUTHOR.site %}{{ AUTHOR.site }}{% else %}{% url 'about' %}{% endif %}">{{ AUTHOR.name }}</a>. Хотите такой же?</p>
