@@ -1,295 +1,46 @@
 {% extends "base.html" %}
-
-{% block extra_css %}
-<style>
-  :root {
-    --primary: #10b981;
-    --primary-hover: #059669;
-    --bg-light: #f8fafc;
-    --card-bg: #ffffff;
-    --text-main: #0f172a;
-    --text-muted: #64748b;
-    --border-color: #e2e8f0;
-    --radius: 12px;
-    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
-  }
-
-  /* Hero Section */
-  .hero {
-    background: linear-gradient(135deg, #065f46 0%, #047857 100%);
-    color: #ffffff;
-    padding: 64px 20px;
-    text-align: center;
-    border-radius: 0 0 24px 24px;
-    margin-bottom: 40px;
-  }
-
-  .hero-content {
-    max-width: 680px;
-    margin: 0 auto;
-  }
-
-  .hero h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 16px;
-    line-height: 1.2;
-  }
-
-  .hero p {
-    font-size: 1.125rem;
-    color: #e6f4ea;
-    margin-bottom: 28px;
-    line-height: 1.6;
-  }
-
-  /* Buttons */
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background-color: var(--primary);
-    color: #ffffff;
-    font-weight: 600;
-    padding: 12px 28px;
-    border-radius: var(--radius);
-    text-decoration: none;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-  }
-
-  .btn-primary:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
-  }
-
-  /* Layout */
-  .main-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px 80px;
-  }
-
-  .section-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .badge {
-    background-color: #e0e7ff;
-    color: #4338ca;
-    font-size: 0.875rem;
-    padding: 2px 10px;
-    border-radius: 20px;
-  }
-
-  /* Announcements Grid */
-  .announcements-grid {
-    display: grid;
-    gap: 16px;
-    margin-bottom: 48px;
-  }
-
-  .notice-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    padding: 20px;
-    box-shadow: var(--shadow);
-    transition: transform 0.2s ease;
-  }
-
-  .notice-card:hover {
-    transform: translateY(-2px);
-  }
-
-  .notice-card h3 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-main);
-    margin-bottom: 8px;
-  }
-
-  .notice-card p {
-    color: var(--text-muted);
-    line-height: 1.5;
-    margin-bottom: 12px;
-  }
-
-  .notice-card time {
-    font-size: 0.85rem;
-    color: #94a3b8;
-  }
-
-  /* Table Styling */
-  .table-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    margin-bottom: 40px;
-  }
-
-  .table-responsive {
-    overflow-x: auto;
-  }
-
-  .custom-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-  }
-
-  .custom-table th {
-    background-color: #f8fafc;
-    color: var(--text-muted);
-    font-weight: 600;
-    font-size: 0.875rem;
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .custom-table td {
-    padding: 14px 16px;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--text-main);
-  }
-
-  .custom-table tbody tr:last-child td {
-    border-bottom: none;
-  }
-
-  .custom-table tbody tr:hover {
-    background-color: #f1f5f9;
-  }
-
-  .custom-table .col-num {
-    color: var(--text-muted);
-    font-weight: 500;
-    width: 50px;
-  }
-
-  /* Empty State */
-  .empty-state {
-    text-align: center;
-    padding: 32px 20px;
-    background: #f8fafc;
-    border: 1px dashed var(--border-color);
-    border-radius: var(--radius);
-    color: var(--text-muted);
-  }
-
-  /* Sticky Bottom Bar */
-  .sticky-bar {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(8px);
-    padding: 8px 12px;
-    border-radius: 50px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    border: 1px solid var(--border-color);
-  }
-
-  .sticky-bar .btn-primary {
-    border-radius: 40px;
-    padding: 10px 24px;
-  }
-</style>
-{% endblock %}
-
 {% block body %}
 <header class="hero">
-  <div class="hero-content">
-    <h1>🎾 Набор детей на теннис</h1>
-    <p>Занятия для школьников: подготовка с нуля и тренировки в группах. Оставьте заявку, и мы свяжемся с вами для уточнения деталей.</p>
-    <a class="btn-primary" href="{% url 'register' %}">
-      <span>Записаться на секцию</span>
-    </a>
+  <div class="wrap">
+    <h1>Набор детей на настольный теннис</h1>
+    <p>Занятия для школьников: подготовка с нуля, тренировки в группах. Оставьте заявку, и мы свяжемся с вами по телефону.</p>
+    <a class="btn" href="{% url 'register' %}">Записаться</a>
   </div>
 </header>
 
-<main class="main-container">
-  <!-- Блок объявлений -->
-  <section class="mb-8">
-    <h2 class="section-title">📢 Объявления</h2>
-
-    {% if announcements %}
-      <div class="announcements-grid">
-        {% for a in announcements %}
-          <article class="notice-card">
-            <h3>{{ a.title }}</h3>
-            <p>{{ a.text }}</p>
-            <time datetime="{{ a.created_at|date:'Y-m-d' }}">{{ a.created_at|date:"j E Y" }}</time>
-          </article>
-        {% endfor %}
-      </div>
-    {% else %}
-      <div class="empty-state">
-        <p>Пока нет объявлений. Загляните позже!</p>
-      </div>
-    {% endif %}
+<main class="wrap">
+  <section>
+    <h2>Объявления</h2>
+    {% for a in announcements %}
+      <article class="notice">
+        <h3>{{ a.title }}</h3>
+        <p>{{ a.text }}</p>
+        <small>{{ a.created_at|date:"j E Y" }}</small>
+      </article>
+    {% empty %}
+      <p class="empty">Пока нет объявлений. Загляните позже.</p>
+    {% endfor %}
   </section>
 
-  <!-- Блок списка участников -->
   <section id="list">
-    <h2 class="section-title">
-      📋 Кто уже записался
-      <span class="badge">{{ registrations|length }}</span>
-    </h2>
-
+    <h2>Кто уже записался <span class="count">{{ registrations|length }}</span></h2>
     {% if registrations %}
-      <div class="table-card">
-        <div class="table-responsive">
-          <table class="custom-table">
-            <thead>
-              <tr>
-                <th class="col-num">№</th>
-                <th>Фамилия</th>
-                <th>Имя</th>
-                <th>Класс</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for r in registrations %}
-                <tr>
-                  <td class="col-num">{{ forloop.counter }}</td>
-                  <td><strong>{{ r.last_name }}</strong></td>
-                  <td>{{ r.first_name }}</td>
-                  <td><span class="badge" style="background-color: #f1f5f9; color: #475569;">{{ r.school_class }}</span></td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>№</th><th>Фамилия</th><th>Имя</th><th>Класс</th></tr></thead>
+        <tbody>
+        {% for r in registrations %}
+          <tr><td class="n">{{ forloop.counter }}</td><td>{{ r.last_name }}</td><td>{{ r.first_name }}</td><td>{{ r.school_class }}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
     {% else %}
-      <div class="empty-state">
-        <p>Пока никто не записался. Станьте первым!</p>
-      </div>
+      <p class="empty">Пока никто не записался. Станьте первым.</p>
     {% endif %}
   </section>
 
-  <footer class="site-footer">
-    {% include "_credit.html" %}
-  </footer>
+  <footer>{% include "_credit.html" %}</footer>
 </main>
-
-<!-- Плавающая кнопка записи -->
-<div class="sticky-bar">
-  <a class="btn-primary" href="{% url 'register' %}">
-    <span>Записаться на теннис</span>
-  </a>
-</div>
+<div class="sticky"><a class="btn" href="{% url 'register' %}">Записаться на теннис</a></div>
 {% endblock %}
